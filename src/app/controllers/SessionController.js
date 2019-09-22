@@ -13,23 +13,28 @@ class SessionController{
       email: Yup.string().email().required(),
       password: Yup.string().required().min(6)
     });
-
+    //Caso os campos não estejam padronizados
     if(!(await schema.isValid(req.body))){
       return res.status(400).json({error: 'Erro de validação!'})
     }
 
+    //Buscando o email e o password da requisição
     const { email, password } = req.body;
 
+    //Buscando atravez do email no banco
     const user = await User.findOne({where: {email}});
 
+    //Caso não exista
     if(!user){
       return res.status(401).json({ error: 'User not exist!' });
     }
 
+    //caso exista, verificar o passsword
     if(!(await user.checkPassword(password))){
-      return res.status(401).json({ error: 'Password does not match!' });
+      return res.status(401).json({ error: 'Senha Inválida!' });
     }
 
+    //Caso o esteja tudo ok retorne somente isso
     const { id, name } = user;
 
     return res.json({
