@@ -12,7 +12,8 @@ class UserController{
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       email: Yup.string().email().required(),
-      password: Yup.string().required().min(6)
+      password: Yup.string().required().min(6),
+      avatar_id: Yup.number().required()
     });
 
     //Caso não esteja padronizado
@@ -33,12 +34,13 @@ class UserController{
     }
 
     // Caso o email não esteja em uso
-    const {id, name, email} = await User.create(req.body);
+    const {id, name, email, avatar_id} = await User.create(req.body);
 
     return res.json({
       id,
       name,
-      email
+      email,
+      avatar_id
     });
   }
 

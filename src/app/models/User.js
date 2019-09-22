@@ -12,7 +12,7 @@ class User extends Model{
       name: Sequelize.STRING,
       email: Sequelize.STRING,
       password: Sequelize.VIRTUAL,
-      password_hash: Sequelize.STRING
+      password_hash: Sequelize.STRING,
     },{
       sequelize,
     });
@@ -29,7 +29,7 @@ class User extends Model{
 
   //Criando associação do usuário com o avatar
   static associate(models){
-    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'files' });
   }
 
   checkPassword(password){
