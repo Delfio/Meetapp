@@ -1,4 +1,4 @@
-import Meetapp from '../models/Meetapp';
+import Meetups from '../models/Meetapp';
 import * as Yup from 'yup';
 
 class MeetappController {
@@ -17,14 +17,14 @@ class MeetappController {
       return res.status(400).json({ error: 'Arquivos invalidos' })
     }
 
-    const meetappExists = await Meetapp.findOne({ where: {name: req.body.name} });
-    //if(meetappExists){
-   //   return res.status.json({ error: 'Evento já cadastrado' });
-   // }
+    const meetappExists = await Meetups.findOne({ where: {name: req.body.name} });
+    if(meetappExists){
+      return res.status(500).json({ error: 'Evento já cadastrado' });
+   }
 
-    const { name, descricao, localizacao, date, user_id, banner_id } = Meetapp.create(req.body);
+    const { name, descricao, localizacao, date, user_id, banner_id } = Meetups.create(req.body);
 
-    return res.json({name, descricao, localizacao, date, user_id, banner_id});
+    return res.json(name, descricao, localizacao, date, user_id, banner_id);
   };
 }
 

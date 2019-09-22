@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class File extends Model{
+class Meetups extends Model{
   /**
    * Variavel 'sequelize' de conexão com o banco
    * Que será usada nas config do database, para distribuir os models
@@ -11,8 +11,9 @@ class File extends Model{
       name: Sequelize.STRING,
       descricao: Sequelize.STRING,
       date: Sequelize.STRING,
+      localizacao: Sequelize.STRING,
+      user_id: Sequelize.INTEGER,
       canceled_at: Sequelize.DATE,
-
     },{
       sequelize,
     });
@@ -26,4 +27,4 @@ class File extends Model{
 
 }
 
-export default File;
+export default Meetups;
