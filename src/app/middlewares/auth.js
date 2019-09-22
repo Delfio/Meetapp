@@ -15,7 +15,7 @@ export default async (req, res, next) => {
 
   //verificando se o token existe!
   if(!authHeader){
-    return res.status(401).json({ error: 'Token not provided!' })
+    return res.status(401).json({ error: 'Usuario não logado' })
   }
   
   //dividindo o que vem do headers, "bearer token....." - usar somente o "token"
@@ -29,7 +29,7 @@ export default async (req, res, next) => {
     req.userId = decoded.id;
     return next();
   } catch (err) {
-    return res.status(401).json({ error: 'Token Invalid' })
+    return res.status(401).json({ error: 'Token invalido' })
   }
 
   return next();

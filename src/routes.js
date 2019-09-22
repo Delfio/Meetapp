@@ -7,6 +7,7 @@ import multerConfig from './config/Multer';
 import UserController from './app/controllers/UserController';
 import SessionsController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
+import MeetappController from './app/controllers/MeetappController';
 
 // ######################   Controllers   ######################
 
@@ -29,6 +30,9 @@ routes.put('/users', UserController.update);
 
 
 routes.post('/files', uploads.single('file'), FileController.store);
+
+routes.post('/meetapp', MeetappController.store);
+
 
 
 
