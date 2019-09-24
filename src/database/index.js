@@ -23,7 +23,9 @@ class Database{
     //Variavel que está sendo esperada dentro dos models "super.init()"
     this.connection = new Sequelize(databaseConfig);
     //Percorrendo o model user e iniciando ele passando a conexão como parametro
-    models.map(model => model.init(this.connection));
+    models
+    .map(model => model.init(this.connection))//mapear as models e instanciar os campos do banco
+    .map(model => model.associate && model.associate(this.connection.models));//mapear as models e instanciar os campos do banco
   }
 
 }

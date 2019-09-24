@@ -12,7 +12,7 @@ class Meetups extends Model{
       descricao: Sequelize.STRING,
       date: Sequelize.STRING,
       localizacao: Sequelize.STRING,
-      user_id: Sequelize.INTEGER,
+      //user_id: Sequelize.INTEGER,
       canceled_at: Sequelize.DATE,
     },{
       sequelize,
