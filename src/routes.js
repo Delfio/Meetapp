@@ -26,11 +26,13 @@ routes.post('/sessions', SessionsController.store);
 //Middleware
 routes.use(authMiddleware);
 
+//Atualziar user
 routes.put('/users', UserController.update);
 
-
+//Enviar imagens
 routes.post('/files', uploads.single('file'), FileController.store);
 
+//Cadastrar eventos
 routes.post('/meetapp', MeetappController.store);
 
 

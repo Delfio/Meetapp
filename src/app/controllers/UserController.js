@@ -74,7 +74,7 @@ class UserController{
     const user = await User.findByPk(req.userId);
 
     //Se o email da requisição for diferente do email do user do banco
-    if(email !== user.email){
+    if(req.body.email !== user.email){
       const UserExists = await User.findOne({ where:{ email } });
 
       //Caso o email para cadastro já esteja em uso
